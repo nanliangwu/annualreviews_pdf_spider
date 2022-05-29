@@ -4,6 +4,7 @@
 ## 2. 使用前提
 - 有一个Annual Reviews会员账号，如无请科学找账号。
 - 本地电脑装有python3环境。
+- 安装了scrapy，如未安装可自行百度教程。
 
 ## 3. 使用说明
 
@@ -15,7 +16,7 @@
 ### 3.2 修改pdf下载目录
 在`setting.py`修改**FILES_STORE**为 pdf 下载目录。
 
-### 3.3
+### 3.3 修改抓取页面url
 Annual Reviews对学科期刊采取分卷的目录，你可以下载多个
 在`AnnualReviews.py`修改urls的值为你的真是下载页面，可以放多条
 ```python
@@ -24,6 +25,14 @@ class AnnualReviews(scrapy.Spider):
     urls = [
         'https://xmu.liu06.ltd/https/77726476706e69737468656265737421e7e056d2263e66457f049ba98e5c26222a0a60acda/toc/soc/1/1'
     ]
+```
+还需要的地方是对 pdf 下载链接的处理：
+```python
+    def parse(self, response, **kwargs):
+          ...
+            # 这行代码，需要根据实际情况拼接出真实的下载地址
+            pdf_url = 'https://xmu.liu06.ltd/' + pdf_urls[0].lstrip('/')
+          ...
 ```
 
 ### 3.4 运行
