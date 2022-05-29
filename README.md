@@ -45,3 +45,6 @@ class AnnualReviews(scrapy.Spider):
 
 ## 5.迭代记录
 - [x] 解析页面，下载pdf
+
+## 联系方式
+- 邮箱：2287478364@qq.com
